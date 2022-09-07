@@ -1,6 +1,6 @@
 import { createVNode, render } from 'vue'
 import { createRouter, Router, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import loadingBar from '@/components/Loadding/LoadingBar.vue'
+import loadingBar from '@/components/Loading/LoadingBar.vue'
 
 // 创建loadingBar的虚拟Dom
 const Vnode = createVNode(loadingBar)
