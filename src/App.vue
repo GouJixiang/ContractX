@@ -1,8 +1,13 @@
 <template>
-  <router-view></router-view>
+  <n-config-provider :theme-overrides="contractTheme">
+    <router-view></router-view>
+  </n-config-provider>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useContractTheme } from '@/store'
+const contractTheme = useContractTheme()
+</script>
 
 <style lang="scss">
 * {

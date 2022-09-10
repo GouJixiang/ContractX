@@ -1,8 +1,24 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
-import './index.css';
+import { createApp } from 'vue'
+import App from './App.vue'
+import { setupRouter } from './router'
+import './index.css'
+import { setupStore } from './store'
+import { setupNaive } from './plugins'
 
-const app = createApp(App)
+async function setupApp() {
 
-app.use(router).mount('#app')
+    const app = createApp(App)
+    
+    // store plugin: pinia
+    setupStore(app)
+
+    // router
+    setupRouter(app)
+
+    // naive
+    setupNaive(app)
+
+    app.mount('#app')
+}
+
+setupApp()
