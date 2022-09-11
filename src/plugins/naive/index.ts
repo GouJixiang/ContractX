@@ -1,8 +1,45 @@
 import type { App } from 'vue'
-import { create, NAvatar, NCard, NCarousel, NConfigProvider, NForm, NFormItem, NInput, NTabPane, NTabs } from 'naive-ui'
+import {
+  create,
+  NAvatar,
+  NButton,
+  NCard,
+  NCarousel,
+  NCheckbox,
+  NConfigProvider,
+  NDivider,
+  NForm,
+  NFormItem,
+  NGi,
+  NGrid,
+  NIcon,
+  NInput,
+  NInputGroupLabel,
+  NSpace,
+  NTabPane,
+  NTabs,
+} from 'naive-ui'
 
 const naive = create({
-  components: [NAvatar, NCarousel, NCard, NTabPane,NTabs,NConfigProvider,NForm,NFormItem,NInput],
+  components: [
+    NAvatar,
+    NCarousel,
+    NCard,
+    NTabPane,
+    NTabs,
+    NConfigProvider,
+    NForm,
+    NFormItem,
+    NInput,
+    NButton,
+    NGrid,
+    NGi,
+    NSpace,
+    NDivider,
+    NIcon,
+    NCheckbox,
+    NInputGroupLabel,
+  ],
 })
 
 export function setupNaive(app: App<Element>) {

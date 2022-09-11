@@ -122,6 +122,20 @@ export default defineConfig({
  },
 ```
 
+​	**Xicons**
+
+```shell
+# 适用于 vue3
+npm i -D @vicons/fluent
+npm i -D @vicons/ionicons4
+npm i -D @vicons/ionicons5
+npm i -D @vicons/antd
+npm i -D @vicons/material
+npm i -D @vicons/fa # font awesome
+npm i -D @vicons/tabler
+npm i -D @vicons/carbon
+```
+
 
 
 ## 二、路由配置

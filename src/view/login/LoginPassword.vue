@@ -16,25 +16,71 @@
         </div>
         <div class="login-form w-2/3 flex justify-center">
           <n-tabs type="line" size="large" justify-content="space-evenly">
-            <n-tab-pane name="登录">
-              <n-form>
+            <n-tab-pane name="手机登录">
+              <n-form :show-label="showLabel">
                 <n-form-item>
-                  <n-input />
+                  <n-input-group-label>中国 +86</n-input-group-label>
+                  <n-input type="text" placeholder="手机号码" clearable />
                 </n-form-item>
                 <n-form-item>
-                  <n-input />
+                  <n-input type="text" placeholder="验证码"></n-input>
+                  <n-button class="ml-6">{{ code }}</n-button>
                 </n-form-item>
+                <n-form-item>
+                  <n-checkbox label="记住我" />
+                </n-form-item>
+                <n-space justify="center">
+                  <n-button id="submitBtn">登录</n-button>
+                </n-space>
               </n-form>
             </n-tab-pane>
-            <n-tab-pane name="注册"> 注册 </n-tab-pane>
+            <n-tab-pane name="密码登录">
+              <n-form :show-label="showLabel">
+                <n-form-item>
+                  <n-input type="text" placeholder="用户名" clearable />
+                </n-form-item>
+                <n-form-item>
+                  <n-input
+                    type="password"
+                    show-password-on="mousedown"
+                    placeholder="密码"
+                  />
+                </n-form-item>
+                <n-form-item>
+                  <n-checkbox label="记住我" />
+                </n-form-item>
+                <n-space justify="center">
+                  <n-button id="submitBtn">登录</n-button>
+                </n-space>
+              </n-form>
+            </n-tab-pane>
           </n-tabs>
         </div>
+        <n-divider class="font-normal" title-placement="center"
+          >第三方登录</n-divider
+        >
+        <n-space>
+          <n-icon size="32" class="icon-hover">
+            <qq-circle-filled />
+          </n-icon>
+          <n-icon size="32" class="icon-hover">
+            <logo-wechat />
+          </n-icon>
+          <n-icon size="32" class="icon-hover">
+            <github />
+          </n-icon>
+        </n-space>
       </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const code = ref('获取验证码')
+const showLabel = ref<Boolean>(false)
+</script>
 
 <style lang="scss">
 .login-body {
@@ -74,6 +120,20 @@
         margin: 20px 0px;
       }
     }
+  }
+}
+
+#submitBtn {
+  background-color: #306acc;
+  color: #fff;
+  width: 100px;
+}
+
+.icon-hover {
+  color: #306acc;
+
+  &:hover {
+    color: #566b8e;
   }
 }
 </style>

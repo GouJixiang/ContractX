@@ -4,6 +4,7 @@ import { setupRouter } from './router'
 import './index.css'
 import { setupStore } from './store'
 import { setupNaive } from './plugins'
+import { setupIcons } from './plugins/xicons/ index'
 
 async function setupApp() {
 
@@ -17,6 +18,9 @@ async function setupApp() {
 
     // naive
     setupNaive(app)
+
+    // xicons
+    setupIcons(app)
 
     app.mount('#app')
 }
