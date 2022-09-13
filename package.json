@@ -25,12 +25,15 @@
     "@vicons/tabler": "^0.12.0",
     "@vitejs/plugin-vue": "^3.1.0",
     "autoprefixer": "^10.4.8",
+    "axios": "^0.27.2",
+    "mockjs": "^1.1.0",
     "naive-ui": "^2.33.2",
     "pinia": "^2.0.22",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8",
     "typescript": "^4.6.4",
     "vite": "^3.1.0",
+    "vite-plugin-mock": "^2.9.6",
     "vue-tsc": "^0.40.4"
   }
 }

@@ -136,7 +136,11 @@ npm i -D @vicons/tabler
 npm i -D @vicons/carbon
 ```
 
+​	**Mock**
 
+```shell
+npm i -D mockjs vite-plugin-mock
+```
 
 ## 二、路由配置
 

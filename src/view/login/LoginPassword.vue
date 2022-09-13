@@ -77,6 +77,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import axios from 'axios'
 
 const code = ref('获取验证码')
 const showLabel = ref<Boolean>(false)
