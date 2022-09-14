@@ -3,15 +3,15 @@
     <div class="container overflow-hidden">
       <div class="left-box h-full w-1/2">
         <n-carousel autoplay dot-type="line">
-          <img class="carousel-img" src="src/assets/网络错误.png" />
-          <img class="carousel-img" src="src/assets/搜索无结果.png" />
-          <img class="carousel-img" src="src/assets/暂无记录.png" />
-          <img class="carousel-img" src="src/assets/权限不足.png" />
+          <img class="carousel-img" src="../../assets/carousel1.png" />
+          <img class="carousel-img" src="../../assets/carousel2.png" />
+          <img class="carousel-img" src="../../assets/carousel3.png" />
+          <img class="carousel-img" src="../../assets/carousel4.png" />
         </n-carousel>
       </div>
       <div class="right-box h-full w-1/2">
         <div class="title-box">
-          <n-avatar round :size="48" src="src/assets/logo.jpg" />
+          <n-avatar round :size="48" :src="logo" />
           <h1>Contract Admin</h1>
         </div>
         <div class="login-form w-2/3 flex justify-center">
@@ -24,10 +24,18 @@
                 </n-form-item>
                 <n-form-item>
                   <n-input type="text" placeholder="验证码"></n-input>
-                  <n-button class="ml-6">{{ code }}</n-button>
+                  <n-button
+                    class="ml-4"
+                    :disabled="smsCodeDisabled"
+                    @click="handleGetSmsCode"
+                    >{{ code }}</n-button
+                  >
                 </n-form-item>
                 <n-form-item>
-                  <n-checkbox label="记住我" />
+                  <n-space justify="space-between" class="w-full">
+                    <n-checkbox label="记住我" />
+                    <a class="cursor-pointer" @click="forgetPwdPop">忘记密码</a>
+                  </n-space>
                 </n-form-item>
                 <n-space justify="center">
                   <n-button id="submitBtn">登录</n-button>
@@ -47,7 +55,10 @@
                   />
                 </n-form-item>
                 <n-form-item>
-                  <n-checkbox label="记住我" />
+                  <n-space justify="space-between" class="w-full">
+                    <n-checkbox label="记住我" />
+                    <a class="cursor-pointer" @click="forgetPwdPop">忘记密码</a>
+                  </n-space>
                 </n-form-item>
                 <n-space justify="center">
                   <n-button id="submitBtn">登录</n-button>
@@ -73,14 +84,52 @@
       </div>
     </div>
   </div>
+
+  <n-modal
+    v-model:show="showModal"
+    class="forgetPwdPop"
+    preset="card"
+    title="忘记密码"
+    size="huge"
+    :bordered="false"
+  >
+    <template #header-extra></template>
+      <n-input placeholder="邮箱或电话号码" />
+      <n-button>找回密码</n-button>
+    <template #footer>
+      <div class="w-full text-center">通过<span>邮箱</span>或<span>手机号码</span>找回您的账号和密码</div>
+    </template>
+  </n-modal>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 import axios from 'axios'
+import logo from '@/assets/logo.jpg'
+import { tr } from 'date-fns/locale'
 
-const code = ref('获取验证码')
+const code = ref<string>('获取验证码')
+const smsCodeDisabled = ref<boolean>(false)
 const showLabel = ref<Boolean>(false)
+const showModal = ref<boolean>(false)
+
+function handleGetSmsCode() {
+  let sec = 59
+  code.value = '60s'
+  smsCodeDisabled.value = true
+  const interval = setInterval(() => {
+    code.value = sec + 's'
+    if (sec-- == 0) {
+      clearInterval(interval)
+      code.value = '获取验证码'
+      smsCodeDisabled.value = false
+    }
+  }, 1000)
+}
+
+function forgetPwdPop() {
+  showModal.value = true
+}
 </script>
 
 <style lang="scss">
@@ -136,5 +185,11 @@ const showLabel = ref<Boolean>(false)
   &:hover {
     color: #566b8e;
   }
+}
+
+.forgetPwdPop {
+  width: 600px;
+  height: 400px;
+  border-radius: 20px 20px;
 }
 </style>

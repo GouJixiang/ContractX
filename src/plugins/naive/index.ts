@@ -18,6 +18,7 @@ import {
   NSpace,
   NTabPane,
   NTabs,
+  NModal,
 } from 'naive-ui'
 
 const naive = create({
@@ -39,6 +40,7 @@ const naive = create({
     NIcon,
     NCheckbox,
     NInputGroupLabel,
+    NModal,
   ],
 })
 

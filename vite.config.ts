@@ -8,6 +8,7 @@ function _resolve(dir: string) {
 }
 
 export default defineConfig({
+  base: './',
   plugins: [
     vue(),
     viteMockServe({
