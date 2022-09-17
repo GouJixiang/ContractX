@@ -1,12 +1,20 @@
 <template>
   <n-config-provider :theme-overrides="contractTheme">
-    <router-view></router-view>
+    <n-notification-provider>
+      <n-message-provider>
+        <GlobalProvider></GlobalProvider>
+      </n-message-provider>
+    </n-notification-provider>
   </n-config-provider>
 </template>
 
 <script setup lang="ts">
 import { useContractTheme } from '@/store'
+
+import GlobalProvider from './components/common/GlobalProvider.vue'
+
 const contractTheme = useContractTheme()
+
 </script>
 
 <style lang="scss">

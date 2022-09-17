@@ -19,6 +19,9 @@ import {
   NTabPane,
   NTabs,
   NModal,
+  NNotificationProvider,
+  NMessageProvider,
+  NSwitch,
 } from 'naive-ui'
 
 const naive = create({
@@ -41,6 +44,9 @@ const naive = create({
     NCheckbox,
     NInputGroupLabel,
     NModal,
+    NNotificationProvider,
+    NMessageProvider,
+    NSwitch,
   ],
 })
 

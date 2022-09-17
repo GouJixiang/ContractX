@@ -33,12 +33,11 @@
                 </n-form-item>
                 <n-form-item>
                   <n-space justify="space-between" class="w-full">
-                    <n-checkbox label="记住我" />
-                    <a class="cursor-pointer" @click="forgetPwdPop">忘记密码</a>
+                    <n-checkbox label="下次自动登录" />
                   </n-space>
                 </n-form-item>
                 <n-space justify="center">
-                  <n-button id="submitBtn">登录</n-button>
+                  <n-button class="submitBtn">登录</n-button>
                 </n-space>
               </n-form>
             </n-tab-pane>
@@ -56,12 +55,14 @@
                 </n-form-item>
                 <n-form-item>
                   <n-space justify="space-between" class="w-full">
-                    <n-checkbox label="记住我" />
-                    <a class="cursor-pointer" @click="forgetPwdPop">忘记密码</a>
+                    <n-checkbox label="下次自动登录" />
+                    <a class="cursor-pointer" @click="showForgetModel = true"
+                      >忘记密码</a
+                    >
                   </n-space>
                 </n-form-item>
                 <n-space justify="center">
-                  <n-button id="submitBtn">登录</n-button>
+                  <n-button class="submitBtn">登录</n-button>
                 </n-space>
               </n-form>
             </n-tab-pane>
@@ -85,8 +86,9 @@
     </div>
   </div>
 
+  <!-- 忘记密码模态框 -->
   <n-modal
-    v-model:show="showModal"
+    v-model:show="showForgetModel"
     class="forgetPwdPop"
     preset="card"
     title="忘记密码"
@@ -94,25 +96,69 @@
     :bordered="false"
   >
     <template #header-extra></template>
-      <n-input placeholder="邮箱或电话号码" />
-      <n-button>找回密码</n-button>
-    <template #footer>
-      <div class="w-full text-center">通过<span>邮箱</span>或<span>手机号码</span>找回您的账号和密码</div>
-    </template>
+    <n-form :show-label="showLabel" v-if="forgetFormVaild">
+      <n-form-item>
+        <n-input placeholder="手机号码或邮箱" />
+      </n-form-item>
+      <n-form-item>
+        <n-input placeholder="验证码" />
+        <n-button
+          class="ml-4"
+          :disabled="smsCodeDisabled"
+          @click="handleGetSmsCode"
+          >{{ code }}</n-button
+        >
+      </n-form-item>
+    </n-form>
+
+    <n-form :show-label="showLabel" v-else>
+      <n-form-item>
+        <n-input placeholder="新密码" />
+      </n-form-item>
+      <n-form-item>
+        <n-input placeholder="重复新密码" />
+      </n-form-item>
+    </n-form>
+
+    <n-space justify="center" class="w-full">
+      <n-button class="submitBtn" @click="handleForgetFormVaild">确认</n-button>
+    </n-space>
   </n-modal>
+
+  <!-- 主题切换按钮 -->
+  <div class="change-theme-box">
+    <n-switch>
+    <template #checked>
+      深色
+    </template>
+    <template #unchecked>
+      浅色
+    </template>
+  </n-switch>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import axios from 'axios'
 import logo from '@/assets/logo.jpg'
-import { tr } from 'date-fns/locale'
 
 const code = ref<string>('获取验证码')
 const smsCodeDisabled = ref<boolean>(false)
 const showLabel = ref<Boolean>(false)
-const showModal = ref<boolean>(false)
+const showForgetModel = ref<boolean>(false)
+const forgetFormVaild = ref<boolean>(true)
 
+axios
+  .post('/mock/login/pwd', {
+    username: 'yangxy',
+    password: 'yangxy',
+  })
+  .then((data: any) => {
+    console.log(data)
+  })
+
+/** 获取手机验证码 */
 function handleGetSmsCode() {
   let sec = 59
   code.value = '60s'
@@ -127,8 +173,9 @@ function handleGetSmsCode() {
   }, 1000)
 }
 
-function forgetPwdPop() {
-  showModal.value = true
+/** 忘记密码按钮事件 */
+function handleForgetFormVaild() {
+  forgetFormVaild.value = !forgetFormVaild.value
 }
 </script>
 
@@ -173,7 +220,7 @@ function forgetPwdPop() {
   }
 }
 
-#submitBtn {
+.submitBtn {
   background-color: #306acc;
   color: #fff;
   width: 100px;
@@ -189,7 +236,13 @@ function forgetPwdPop() {
 
 .forgetPwdPop {
   width: 600px;
-  height: 400px;
+  height: 300px;
   border-radius: 20px 20px;
+}
+
+.change-theme-box {
+  position: absolute;
+  top: 50px;
+  right: 50px;
 }
 </style>
