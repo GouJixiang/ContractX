@@ -1,6 +1,6 @@
 # Contract X Vue
 
-> 👨🏻‍💻LazyKoalas | 📮tiamoer@outlook.com | 🌏Xi'an
+> 👨🏻‍💻GouJixiang | 📮tiamoer@outlook.com | 🌏Xi'an
 
 ## 一、基础环境
 
