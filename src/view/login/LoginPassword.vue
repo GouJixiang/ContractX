@@ -2,11 +2,11 @@
   <div class="login-body">
     <div class="container overflow-hidden">
       <div class="left-box h-full w-1/2">
-        <n-carousel autoplay dot-type="line">
-          <img class="carousel-img" src="../../assets/carousel1.png" />
-          <img class="carousel-img" src="../../assets/carousel2.png" />
-          <img class="carousel-img" src="../../assets/carousel3.png" />
-          <img class="carousel-img" src="../../assets/carousel4.png" />
+        <n-carousel autoplay dot-type="line" centered-slides="true">
+          <img class="carousel-img" src="../../assets/carousel1.svg" />
+          <img class="carousel-img" src="../../assets/carousel2.svg" />
+          <img class="carousel-img" src="../../assets/carousel3.svg" />
+          <img class="carousel-img" src="../../assets/carousel4.svg" />
         </n-carousel>
       </div>
       <div class="right-box h-full w-1/2">
@@ -128,20 +128,16 @@
   <!-- 主题切换按钮 -->
   <div class="change-theme-box">
     <n-switch>
-    <template #checked>
-      深色
-    </template>
-    <template #unchecked>
-      浅色
-    </template>
-  </n-switch>
+      <template #checked> 深色 </template>
+      <template #unchecked> 浅色 </template>
+    </n-switch>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
 import axios from 'axios'
 import logo from '@/assets/logo.jpg'
+import { ref } from 'vue'
 
 const code = ref<string>('获取验证码')
 const smsCodeDisabled = ref<boolean>(false)
@@ -199,6 +195,10 @@ function handleForgetFormVaild() {
 
     .left-box {
       background-color: #306acc;
+
+      .carousel-img {
+        height: 100%;
+      }
     }
 
     .right-box {
