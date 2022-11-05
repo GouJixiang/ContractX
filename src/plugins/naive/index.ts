@@ -22,6 +22,12 @@ import {
   NNotificationProvider,
   NMessageProvider,
   NSwitch,
+  NLayout,
+  NLayoutContent,
+  NLayoutSider,
+  NLayoutHeader,
+  NMenu,
+  NText,
 } from 'naive-ui'
 
 const naive = create({
@@ -47,6 +53,12 @@ const naive = create({
     NNotificationProvider,
     NMessageProvider,
     NSwitch,
+    NLayout,
+    NLayoutContent,
+    NLayoutSider,
+    NLayoutHeader,
+    NMenu,
+    NText,
   ],
 })
 

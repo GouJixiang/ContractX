@@ -1,5 +1,5 @@
 <template>
-  <n-config-provider :theme-overrides="contractTheme">
+  <n-config-provider :theme-overrides="contractTheme" class="h-full">
     <n-notification-provider>
       <n-message-provider>
         <GlobalProvider></GlobalProvider>
@@ -14,7 +14,6 @@ import { useContractTheme } from '@/store'
 import GlobalProvider from './components/common/GlobalProvider.vue'
 
 const contractTheme = useContractTheme()
-
 </script>
 
 <style lang="scss">
@@ -25,7 +24,7 @@ const contractTheme = useContractTheme()
 
 html,
 body,
-#App {
+#app {
   box-sizing: border-box;
   height: 100%;
 }
